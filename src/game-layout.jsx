@@ -1,5 +1,6 @@
 import styles from './game.module.css';
 import { Field, Information } from './components';
+import PropTypes from 'prop-types';
 
 export const GameLayout = ({
 	field,
@@ -22,3 +23,11 @@ export const GameLayout = ({
 		</button>
 	</div>
 );
+GameLayout.propTypes = {
+	field: PropTypes.arrayOf(PropTypes.string),
+	currentPlayer: PropTypes.string,
+	isGameEnded: PropTypes.bool,
+	isDraw: PropTypes.bool,
+	onCellClick: PropTypes.func,
+	onRestart: PropTypes.func,
+};

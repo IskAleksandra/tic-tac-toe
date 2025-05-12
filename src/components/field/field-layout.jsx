@@ -1,5 +1,6 @@
 import styles from './field.module.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const FieldLayout = ({ field, onCellClick }) => {
 	return (
@@ -11,4 +12,9 @@ export const FieldLayout = ({ field, onCellClick }) => {
 			))}
 		</div>
 	);
+};
+
+FieldLayout.propTypes = {
+	field: PropTypes.arrayOf(PropTypes.string),
+	onCellClick: PropTypes.func,
 };
