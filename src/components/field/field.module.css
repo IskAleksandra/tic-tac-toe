@@ -1,0 +1,16 @@
+.field {
+	display: grid;
+	grid-template-columns: repeat(3, 100px); /* Ширина ячейки */
+	grid-template-rows: repeat(3, 100px); /* Высота ячейки */
+	gap: 0; /* Убираем промежутки между ячейками */
+	/* border: 2px solid gray; Обводка вокруг всего поля */
+	background-color: gray;
+}
+.field button {
+	width: 100px; /* Ширина ячейки */
+	height: 100px; /* Высота ячейки */
+	background-color: white; /* Цвет фона ячейки */
+	border: 2px solid gray; /* Черная обводка ячейки */
+	cursor: pointer;
+	transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
