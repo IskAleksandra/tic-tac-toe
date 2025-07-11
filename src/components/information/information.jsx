@@ -1,18 +1,27 @@
 import { InformationLayout } from './information-layout';
-import PropTypes from 'prop-types';
+import { store } from '../../Redux/store';
+import { STATUS, PLAYER_SIGN } from '../../constants';
+import { useEffect, useState } from 'react';
 
-export const Information = ({ currentPlayer, isGameEnded, isDraw }) => {
-	return (
-		<InformationLayout
-			currentPlayer={currentPlayer}
-			isGameEnded={isGameEnded}
-			isDraw={isDraw}
-		/>
-	);
-};
+export const Information = () => {
+	const [storeData, setStoreData] = useState(store.getState());
 
-Information.propTypes = {
-	currentPlayer: PropTypes.string,
-	isGameEnded: PropTypes.bool,
-	isDraw: PropTypes.bool,
+	const { currentPlayer, status } = storeData;
+
+	useEffect(() => {
+		const unsubscribe = store.subscribe(() => {
+			const newStore = store.getState();
+			setStoreData(newStore);
+		});
+		return () => unsubscribe();
+	}, []);
+	let message;
+	if (status === STATUS.DRAW) {
+		message = 'Ничья';
+	} else if (status === STATUS.WIN) {
+		message = `Победа: ${PLAYER_SIGN[currentPlayer]}`;
+	} else {
+		message = `Ходит: ${PLAYER_SIGN[currentPlayer]}`;
+	}
+	return <InformationLayout message={message} />;
 };
